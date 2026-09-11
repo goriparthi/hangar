@@ -224,6 +224,15 @@ Kept because each one cost real debugging and would be easy to reintroduce.
     case fold. `Fuzzy.lowered` folds ASCII only, so folding wider collapses `Über`
     and `über` into one copy and then the lowercase spelling is in no field at all.
     A dedupe wider than the haystack turns a phantom match into a missing host.
+30. **A GUI app's PATH is not the user's.** Setup Check walked
+    `ProcessInfo`'s PATH for the `hangar` link. Opened from Finder or as a login
+    item, the app inherits launchd's `/usr/bin:/bin:/usr/sbin:/sbin`, which holds
+    none of the four directories the tool goes in. So it said "not installed"
+    beside a link the user had just made with the `sudo ln` line it handed them,
+    and could never offer a directory to install into. Launching from a terminal
+    hides it. Whether a file exists is a filesystem question; only choosing where
+    to put one needs the shell's PATH, and the part of that readable without
+    running the shell is `/etc/paths` and `/etc/paths.d`.
 
 ## Testing against a fake fleet
 

@@ -301,8 +301,8 @@ public struct Preflight: Sendable {
             guard let destination else {
                 return Check(
                     id: "cli", title: "hangar is not on your PATH",
-                    detail: "No directory on your PATH can be written without sudo, "
-                        + "so this one is yours to run.",
+                    detail: "No directory Hangar knows is on your PATH can be "
+                        + "written without sudo, so this one is yours to run.",
                     level: .warning,
                     remedy: .copyCommand(
                         CommandLineInstall.manualCommand(tool: toolPath ?? "")))

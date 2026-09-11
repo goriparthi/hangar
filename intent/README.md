@@ -63,3 +63,4 @@ prospectively; see [docs/ai-native-sdlc.md](../docs/ai-native-sdlc.md).
 | 0028 | A fleet with no AWS | Open |
 | 0029 | A glyph that was amber for half an hour | Shipped |
 | 0030 | Typing more narrows | Shipped |
+| 0031 | A command the app could not see | Shipped |

@@ -155,31 +155,7 @@ enum CommandLineTool {
 
     /// Where the shell would find `hangar` today, and whether it is ours.
     static func state() -> CommandLineInstall.State {
-        let fm = FileManager.default
-        let onPath = CommandLineInstall.searchPath()
-        for directory in onPath {
-            let link = (directory as NSString)
-                .appendingPathComponent(CommandLineInstall.commandName)
-            guard fm.fileExists(atPath: link) || isSymlink(link) else { continue }
-            guard let destination = try? fm.destinationOfSymbolicLink(atPath: link),
-                  destination.contains("/Contents/Helpers/") else {
-                return .claimed(link: link)
-            }
-            if !fm.isExecutableFile(atPath: destination) { return .broken(link: link) }
-            return .installed(link: link)
-        }
-        let writable = Set(CommandLineInstall.preferred.filter {
-            fm.isWritableFile(atPath: $0)
-        })
-        return .absent(destination: CommandLineInstall.destination(onPath: onPath,
-                                                                  writable: writable))
-    }
-
-    /// A dangling symlink is not a file, so `fileExists` says no while the name
-    /// is very much taken.
-    private static func isSymlink(_ path: String) -> Bool {
-        (try? FileManager.default.attributesOfItem(atPath: path)[.type]) as? FileAttributeType
-            == .typeSymbolicLink
+        CommandLineInstall.state(shellPath: CommandLineInstall.shellPath())
     }
 
     enum Outcome: Equatable {

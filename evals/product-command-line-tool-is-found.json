@@ -1,0 +1,7 @@
+{
+  "id": "product-command-line-tool-is-found",
+  "promise": "Setup Check finds an installed `hangar` however the app was opened, and only offers to install where a shell would look.",
+  "why": "An app opened from Finder inherits launchd's PATH, which holds none of the directories the tool goes in. The check walked that PATH, so it said not installed next to a link the user had just made with the command it handed them.",
+  "command": "scripts/test.sh --filter CommandLineStateTests 2>&1 | grep -qE 'Executed [1-9][0-9]* tests, with 0 failures'",
+  "expect": "exit 0"
+}

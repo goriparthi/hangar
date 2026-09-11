@@ -751,13 +751,21 @@ survive it.
 
 The same fleet, for tmux, fzf, herder, or anything else that can run a program.
 
-`hangar` ships inside the app at `Contents/Helpers/hangar` and **installs itself**:
-on launch, if nothing on your PATH is called `hangar` already, Hangar links it
+`hangar` ships inside the app at `Contents/Helpers/hangar` and **installs itself**
+when it can: on launch, if nothing is called `hangar` already, Hangar links it
 into the first directory you own that is on your PATH, preferring
 `~/.local/bin`, then the Homebrew prefix, then `~/bin`. Setup Check reports where
 it went, and offers the install if it has not happened. `/usr/local/bin` is last
 on that list on purpose: it belongs to root on a stock Mac, so reaching for it
 first turns a one-second install into a sudo prompt.
+
+An app opened from Finder is not given your shell's PATH, and Hangar does not run
+your shell to ask for it. "On your PATH" means what it can see without doing
+that: its own PATH, plus `/etc/paths` and `/etc/paths.d`, which every login shell
+starts from. On a stock Mac that is `/usr/local/bin`, so a first run usually hands
+you the line to run rather than installing. Finding an install is not limited
+that way: Setup Check looks in all four directories, so a link made by that line,
+by hand, or from a copy launched in a terminal is found however Hangar was opened.
 
 A `hangar` that Hangar did not write is never overwritten. It is far more likely
 to be something you put there deliberately, so it is reported and left alone.
