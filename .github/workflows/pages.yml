@@ -32,7 +32,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check the page for the things that break it
         run: |
@@ -49,11 +49,13 @@ jobs:
           fi
           test -f site/.nojekyll || { echo "::error::site/.nojekyll missing"; exit 1; }
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v3
+      # v4 onward drops dotfiles by default; keep .nojekyll in the artifact as before.
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
+          include-hidden-files: true
 
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
