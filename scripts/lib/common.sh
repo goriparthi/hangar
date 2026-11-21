@@ -17,7 +17,7 @@ INFO_PLIST="$APP_DIR/Resources/Info.plist"
 ENTITLEMENTS="$APP_DIR/Resources/$APP_NAME.entitlements"
 CATALOG="$APP_DIR/Resources/${APP_NAME}Assets.xcassets"
 ICON_SRC="$APP_DIR/Resources/app-icon"
-DEPLOY_TARGET="14.0"
+DEPLOY_TARGET="15.0"
 
 # The profile name created with `xcrun notarytool store-credentials`. Not a secret;
 # the credentials themselves stay in the login Keychain.

@@ -132,7 +132,7 @@ Standard SSH underneath. Nothing to learn, nothing to migrate.
 **Download the DMG**, drag Hangar to Applications, and open it. On first launch a
 setup check reads your machine and says what works; after that Hangar lives in
 your menu bar. That is the whole install. The app is signed with a Developer ID certificate and notarized by Apple,
-so Gatekeeper opens it without complaint on any Mac running macOS 14 or newer.
+so Gatekeeper opens it without complaint on any Mac running macOS 15 or newer.
 
 Hangar puts a glyph in your menubar and nothing in your Dock, except while one
 of its windows is open: the Dock icon and the app switcher entry come and go with
